@@ -1,8 +1,9 @@
 package com.dicemy.eduservice.controller;
 
 import com.dicemy.commonutils.R;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
-
+@Api(description = "登录")
 @RestController
 @RequestMapping("/eduservice/user")
 @CrossOrigin

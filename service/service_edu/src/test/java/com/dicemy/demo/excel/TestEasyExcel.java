@@ -1,15 +1,16 @@
-package com.dicemy.demo;
+package com.dicemy.demo.excel;
 
 import com.alibaba.excel.EasyExcel;
-import com.dicemy.demo.excel.DemoData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TestEasyExcel {
     public static void main(String[] args) {
+//        String filename = "D:\\01.xlsx";
+//        EasyExcel.write(filename, DemoData.class).sheet("学生列表").doWrite(getData());
         String filename = "D:\\01.xlsx";
-        EasyExcel.write(filename, DemoData.class).sheet("学生列表").doWrite(getData());
+        EasyExcel.read(filename, DemoData.class, new ExcelListener()).sheet().doRead();
     }
 
     private static List<DemoData> getData() {
