@@ -1,5 +1,7 @@
 package com.dicemy.eduservice.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dicemy.eduservice.entity.EduCourse;
 import com.dicemy.eduservice.entity.EduCourseDescription;
 import com.dicemy.eduservice.entity.vo.CourseInfoVo;
@@ -8,13 +10,14 @@ import com.dicemy.eduservice.mapper.EduCourseMapper;
 import com.dicemy.eduservice.service.EduChapterService;
 import com.dicemy.eduservice.service.EduCourseDescriptionService;
 import com.dicemy.eduservice.service.EduCourseService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.dicemy.eduservice.service.EduVideoService;
 import com.dicemy.servicebase.exceptionhandler.CustomException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -93,5 +96,14 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (!flag) {
             throw new CustomException(20001, "删除失败");
         }
+    }
+
+    @Override
+    public List<EduCourse> getAllCourse() {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("id");
+        wrapper.last("limit 8");
+        List<EduCourse> list = this.list(wrapper);
+        return list;
     }
 }

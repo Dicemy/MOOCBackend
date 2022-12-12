@@ -13,8 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>service_edu</module>
+        <module>service-edu</module>
         <module>service-oss</module>
+        <module>service-cms</module>
     </modules>
 
     <dependencies>
