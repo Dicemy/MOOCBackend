@@ -16,6 +16,8 @@
         <module>service-edu</module>
         <module>service-oss</module>
         <module>service-cms</module>
+        <module>service-msm</module>
+        <module>service-ucenter</module>
     </modules>
 
     <dependencies>
