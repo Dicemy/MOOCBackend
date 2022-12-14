@@ -1,11 +1,15 @@
 package com.dicemy.eduservice.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.dicemy.eduservice.entity.EduCourse;
+import com.dicemy.eduservice.entity.frontvo.CourseFrontVo;
+import com.dicemy.eduservice.entity.frontvo.CourseWebVo;
 import com.dicemy.eduservice.entity.vo.CourseInfoVo;
 import com.dicemy.eduservice.entity.vo.CoursePublishVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -28,4 +32,8 @@ public interface EduCourseService extends IService<EduCourse> {
     void removeCourse(String courseId);
 
     List<EduCourse> getAllCourse();
+
+    Map<String, Object> getCourseFrontList(Page<EduCourse> pageCourse, CourseFrontVo courseFrontVo);
+
+    CourseWebVo getBaseCourseInfo(String courseId);
 }

@@ -29,6 +29,6 @@ public class IndexFrontController {
     public R index() {
         List<EduCourse> courseList = eduCourseService.getAllCourse();
         List<EduTeacher> teacherList = eduTeacherService.getAllTeacher();
-        return R.ok().data("edulist", courseList).data("teacherList", teacherList);
+        return R.ok().data("eduList", courseList).data("teacherList", teacherList);
     }
 }
