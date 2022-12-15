@@ -2,12 +2,14 @@ package com.dicemy.eduservice.controller.front;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.dicemy.commonutils.R;
+import com.dicemy.commonutils.ordervo.CourseWebVoOrder;
 import com.dicemy.eduservice.entity.EduCourse;
 import com.dicemy.eduservice.entity.chapter.ChapterVo;
 import com.dicemy.eduservice.entity.frontvo.CourseFrontVo;
 import com.dicemy.eduservice.entity.frontvo.CourseWebVo;
 import com.dicemy.eduservice.service.EduChapterService;
 import com.dicemy.eduservice.service.EduCourseService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,5 +39,13 @@ public class CourseFrontController {
         CourseWebVo courseWebVo = eduCourseService.getBaseCourseInfo(courseId);
         List<ChapterVo> chapterVideoList = eduChapterService.getChapterVideoByCourseId(courseId);
         return R.ok().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVideoList);
+    }
+
+    @PostMapping("/getCourseInfoOrder/{id}")
+    public CourseWebVoOrder getCourseInfoOrder(@PathVariable String id) {
+        CourseWebVo courseInfo = eduCourseService.getBaseCourseInfo(id);
+        CourseWebVoOrder courseWebVoOrder = new CourseWebVoOrder();
+        BeanUtils.copyProperties(courseInfo, courseWebVoOrder);
+        return courseWebVoOrder;
     }
 }

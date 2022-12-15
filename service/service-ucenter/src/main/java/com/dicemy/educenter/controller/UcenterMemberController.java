@@ -3,9 +3,11 @@ package com.dicemy.educenter.controller;
 
 import com.dicemy.commonutils.JwtUtils;
 import com.dicemy.commonutils.R;
+import com.dicemy.commonutils.ordervo.UcenterMemberOrder;
 import com.dicemy.educenter.entity.UcenterMember;
 import com.dicemy.educenter.entity.vo.RegisterVo;
 import com.dicemy.educenter.service.UcenterMemberService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +46,14 @@ public class UcenterMemberController {
         UcenterMember member = ucenterMemberService.getById(memberId);
         member.setPassword(null);
         return R.ok().data("userInfo", member);
+    }
+
+    @PostMapping("/getUserInfoOrder/{id}")
+    public UcenterMemberOrder getUserInfoOrder(@PathVariable String id) {
+        UcenterMember member = ucenterMemberService.getById(id);
+        UcenterMemberOrder ucenterMemberOrder = new UcenterMemberOrder();
+        BeanUtils.copyProperties(member, ucenterMemberOrder);
+        return ucenterMemberOrder;
     }
 }
 
