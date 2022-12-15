@@ -22,7 +22,7 @@ import java.util.List;
 @Api(description = "分类管理")
 @RestController
 @RequestMapping("/eduservice/subject")
-@CrossOrigin
+//@CrossOrigin
 public class EduSubjectController {
     @Autowired
     private EduSubjectService eduSubjectService;
